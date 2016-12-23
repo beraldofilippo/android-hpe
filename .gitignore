@@ -43,3 +43,10 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+
+# jniLibs folder
+dlib/src/main/jniLibs
+
+# build folders
+app/build
+dlib/build

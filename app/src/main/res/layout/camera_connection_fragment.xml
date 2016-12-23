@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.beraldo.hpe.view.AutoFitTextureView
+        android:id="@+id/texture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorPrimaryTransparency50"
+        android:orientation="horizontal"
+        android:padding="@dimen/result_textview_padding" >
+
+        <TextView
+            android:id="@+id/performance_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_medium" />
+
+        <TextView
+            android:id="@+id/results_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:id="@+id/info_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_small" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/stop_capt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop capture"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@color/colorButtonText"
+            style="?borderlessButtonStyle" />
+
+        <Button
+            android:id="@+id/discard_capt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discard capture"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@color/colorButtonText"
+            style="?borderlessButtonStyle" />
+    </LinearLayout>
+
+</FrameLayout>

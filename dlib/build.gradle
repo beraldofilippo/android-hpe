@@ -1,0 +1,99 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "${rootProject.ext.androidBuildToolsVersion}"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    // Use prebilt *.so. Don't run ndk-build
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["src/main/jniLibs"]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:${rootProject.ext.androidSupportSdkVersion}"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+    }
+}
+
+apply plugin: 'com.jakewharton.hugo'
+
+// Convenience methods to call ndk-build, not using them since I use prebuilt .so libraries
+def GetNDKDir() {
+    def localProperties = new Properties()
+
+    def NDK_SEARCH_VARS = ['ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'NDKROOT', 'NDKHOME']
+    def ndk_path = null
+
+    def lim = (Os.isFamily(Os.FAMILY_WINDOWS)) ? '\\' : '/'
+
+    // Search Local.Properties file
+    try {
+        localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def ndkDir = localProperties.getProperty('ndk.dir')
+        ndk_path = ndkDir != null ? ndkDir + lim : null;
+    } catch (java.io.FileNotFoundException e) {
+        println 'local.properties file not found'
+    }
+
+    // Search env var
+    if (ndk_path == null) {
+        for (String var : NDK_SEARCH_VARS) {
+            def v = System.getenv(var)
+
+            if (v != null) {
+                ndk_path = v + lim
+                println "found in System Environment *$var = " + ndk_path
+                break
+            }
+        }
+    } else {
+        println 'found in local.properties *NDK_PATH = ' + ndk_path
+    }
+
+    if (ndk_path == null) {
+        println 'No NDK_PATH found'
+        ndk_path = ''
+    }
+    return ndk_path
+}
+
+def NDKCommand() {
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        return GetNDKDir() + "ndk-build.cmd"
+    } else {
+        return GetNDKDir() + "ndk-build"
+    }
+}
