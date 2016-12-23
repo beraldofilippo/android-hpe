@@ -2,4 +2,4 @@
 Android native application to perform head pose estimation using images coming from the front camera.
 
 ## Example of the final result
-![](https://github.com/beraldofilippo/android-hpe/tree/master/readme_stuff/giphy.gif)
+![Demo gif](https://j.gifs.com/mwX0Q3.gif)
