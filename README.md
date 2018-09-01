@@ -9,9 +9,6 @@ You need to compile your JNI libraries, they have to be copied to `[this_project
 
 Make sure to take a look at [android-hpe-library](https://github.com/beraldofilippo/android-hpe-library) before doing anything else in this project, it will help to understand how this app works.
 
-## Basics
-Under construction.
-
 ## Additional info
 This algorithm can handle roughly up to the half-profile pose of the head, then it looses track.
 
