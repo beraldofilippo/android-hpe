@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create main directory
         File sdcard = Environment.getExternalStorageDirectory();
-        File main = new File(sdcard, "Selfear2");
+        File main = new File(sdcard, "HeadPoseEstimation");
         if (!main.exists()) {
             Log.d(TAG, "Creating main directory in " + main.getAbsolutePath());
             if (!main.mkdir()) {
