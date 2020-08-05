@@ -7,18 +7,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.io.File;
 
@@ -27,7 +23,6 @@ import com.beraldo.hpe.dlib.Constants;
 import com.beraldo.hpe.utils.FileUtils;
 import hugo.weaving.DebugLog;
 
-@EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PERMISSION = 2;
     private static final String TAG = "MainActivity";
@@ -41,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
     };
-
-    @ViewById(R.id.toolbar)
-    protected Toolbar mToolbar;
 
     /**
      * Checks if the app has permission to write to device storage or open camera
@@ -122,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSupportActionBar(mToolbar);
+
+        setContentView(R.layout.activity_main);
+
         // Just use hugo to print log
         isExternalStorageWritable();
         isExternalStorageReadable();
@@ -175,11 +169,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         FileUtils.savePreference(this, FileUtils.PARAMS_DIR_PREFS_NAME, params.getAbsolutePath());
-    }
-
-    @AfterViews
-    protected void setupUI() {
-        mToolbar.setTitle(getString(R.string.app_name));
     }
 
     /* Checks if external storage is available for read and write */

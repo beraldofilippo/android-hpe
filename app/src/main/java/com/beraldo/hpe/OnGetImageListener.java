@@ -18,8 +18,6 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import junit.framework.Assert;
-
 import org.w3c.dom.Document;
 
 import java.io.File;
@@ -126,7 +124,6 @@ public class OnGetImageListener implements OnImageAvailableListener {
             mScreenRotation = 90;
         }
 
-        Assert.assertEquals(dst.getWidth(), dst.getHeight()); // Make sure the destination bitmap is square
         final float minDim = Math.min(src.getWidth(), src.getHeight());
 
         final Matrix matrix = new Matrix();

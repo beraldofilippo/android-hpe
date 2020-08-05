@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "${rootProject.ext.androidBuildToolsVersion}"
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "com.beraldo.hpe"
-        minSdkVersion 21
-        targetSdkVersion 24
+        minSdkVersion 24
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -21,33 +21,23 @@ android {
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.android.tools.build:gradle:4.0.1'
     }
 }
 
 repositories {
-    mavenCentral()
-    mavenLocal()
+    jcenter()
+    google()
 }
-
-apply plugin: 'com.neenbedankt.android-apt'
-def AAVersion = '4.1.0'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    def appcompat_version = "1.2.0"
 
-    apt "org.androidannotations:androidannotations:$AAVersion"
-    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
 
-    compile "com.android.support:appcompat-v7:${rootProject.ext.androidSupportSdkVersion}"
-
-    compile project(':dlib')
-
-    compile "com.google.android.gms:play-services:${rootProject.ext.androidPlayServicesVersion}"
+    implementation project(':dlib')
 }
-
-apply plugin: 'com.android.application'

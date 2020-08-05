@@ -28,7 +28,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -40,6 +39,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +54,7 @@ import java.util.concurrent.TimeUnit;
 import com.beraldo.hpe.utils.XMLReader;
 import com.beraldo.hpe.view.AutoFitTextureView;
 import hugo.weaving.DebugLog;
+
 public class CameraConnectionFragment extends Fragment {
     /**
      * The camera preview size will be chosen to be the smallest frame by pixel size capable of

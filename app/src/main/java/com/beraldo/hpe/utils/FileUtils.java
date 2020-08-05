@@ -19,9 +19,10 @@ package com.beraldo.hpe.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.RawRes;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RawRes;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
