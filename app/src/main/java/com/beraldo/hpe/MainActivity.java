@@ -16,11 +16,11 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.beraldo.hpe.dlib.Constants;
+import com.beraldo.hpe.utils.FileUtils;
+
 import java.io.File;
 
-import com.beraldo.hpe.dlib.Constants;
-
-import com.beraldo.hpe.utils.FileUtils;
 import hugo.weaving.DebugLog;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Called whenever tha radiogroup gets a click on its buttons.
+     *
      * @param view
      */
     public void onRadioButtonClicked(View view) {
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Called whenever the checkbox gets clicked.
+     *
      * @param view
      */
     public void onCheckBoxSaveClicked(View view) {
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Called whenever he launch button gets clicked.
+     *
      * @param view
      */
     public void onLauchButtonClicked(View view) {
@@ -132,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
         // Create main directory
         File sdcard = Environment.getExternalStorageDirectory();
         File main = new File(sdcard, "Selfear2");
-        if(!main.exists()){
+        if (!main.exists()) {
             Log.d(TAG, "Creating main directory in " + main.getAbsolutePath());
-            if(!main.mkdir()) {
+            if (!main.mkdir()) {
                 Log.e(TAG, "Failed to create main directory in " + main.getAbsolutePath());
             }
         }
@@ -142,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Create data directory
         File data = new File(main, "data");
-        if(!data.exists()){
+        if (!data.exists()) {
             Log.d(TAG, "Creating data directory in " + data.getAbsolutePath());
-            if(!data.mkdir()) {
+            if (!data.mkdir()) {
                 Log.e(TAG, "Failed to create data directory in " + data.getAbsolutePath());
             }
         }
@@ -152,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Create detections directory
         File detections = new File(main, "detections");
-        if(!detections.exists()){
+        if (!detections.exists()) {
             Log.d(TAG, "Creating detections directory in " + detections.getAbsolutePath());
-            if(!detections.mkdir()) {
+            if (!detections.mkdir()) {
                 Log.e(TAG, "Failed to create data directory in " + detections.getAbsolutePath());
             }
         }
@@ -162,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Create params directory
         File params = new File(main, "params");
-        if(!params.exists()){
+        if (!params.exists()) {
             Log.d(TAG, "Creating detections directory in " + params.getAbsolutePath());
-            if(!params.mkdir()) {
+            if (!params.mkdir()) {
                 Log.e(TAG, "Failed to create params directory in " + params.getAbsolutePath());
             }
         }

@@ -37,8 +37,8 @@ public class XMLReader {
             parser.setInput(in_s);
 
             /*
-            * ###### Setting up values suitable for Huawei P9 Lite
-            * */
+             * ###### Setting up values suitable for Huawei P9 Lite
+             * */
             /*mCameraIntrinsics[0] = 502.129f;
             mCameraIntrinsics[1] = 501.849f;
             mCameraIntrinsics[2] = 320.297f;
@@ -124,8 +124,8 @@ public class XMLReader {
             parser.setInput(in_s);
 
             /*
-            * ###### Setting up values suitable for Huawei P9 Lite
-            * */
+             * ###### Setting up values suitable for Huawei P9 Lite
+             * */
             /*mCameraDistortions[0] = -0.010f; // k1
             mCameraDistortions[1] = 1.303f; // k2
             mCameraDistortions[2] = 0.000f; // p1

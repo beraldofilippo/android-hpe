@@ -23,10 +23,10 @@ import javax.xml.transform.stream.StreamResult;
  * XML files I want to build are of the type:
  * <selfear2 mode="0" time_performance="XXXXXXX.XX">
  * <result>
- *     <timestamp>xxxxxxxxxxxx</timestamp>
- *     <yaw>XX.XX</yaw>
- *     <pitch>XXX.XX</pitch>
- *     <roll>XXX.XX</roll>
+ * <timestamp>xxxxxxxxxxxx</timestamp>
+ * <yaw>XX.XX</yaw>
+ * <pitch>XXX.XX</pitch>
+ * <roll>XXX.XX</roll>
  * </result>
  * </selfear2>
  */
@@ -44,13 +44,13 @@ public class XMLWriter {
     }
 
     public static Document newDocument(int m) {
-        if(mInstance == null) {
+        if (mInstance == null) {
             init();
         }
 
         Document document = mInstance.newDocument();
         Element selfear2 = document.createElement("selfear2");
-        selfear2.setAttribute("mode", ""+m);
+        selfear2.setAttribute("mode", "" + m);
         document.appendChild(selfear2);
 
         return document;
@@ -62,25 +62,25 @@ public class XMLWriter {
 
         Element ts = d.createElement("timestamp");
         result.appendChild(ts);
-        ts.appendChild(d.createTextNode(""+tstamp));
+        ts.appendChild(d.createTextNode("" + tstamp));
 
         Element yaw = d.createElement("yaw");
         result.appendChild(yaw);
-        yaw.appendChild(d.createTextNode(""+y));
+        yaw.appendChild(d.createTextNode("" + y));
 
         Element pitch = d.createElement("pitch");
         result.appendChild(pitch);
-        pitch.appendChild(d.createTextNode(""+p));
+        pitch.appendChild(d.createTextNode("" + p));
 
         Element roll = d.createElement("roll");
         result.appendChild(roll);
-        roll.appendChild(d.createTextNode(""+r));
+        roll.appendChild(d.createTextNode("" + r));
     }
 
     public static void saveDocumentToFile(Context ctx, Document d, String fname) {
         File myDir = new File(FileUtils.getPreference(ctx, FileUtils.DETECTIONS_DIR_PREFS_NAME));
 
-        if(!myDir.exists()) { // Ensure the directory exists, probably not needed anymore
+        if (!myDir.exists()) { // Ensure the directory exists, probably not needed anymore
             if (!myDir.mkdirs()) {
                 Log.d(TAG, "Make directory failed, not saving the file.");
             }
@@ -100,6 +100,6 @@ public class XMLWriter {
     }
 
     public static void addTimePerformance(Document d, double t) {
-        d.getDocumentElement().setAttribute("time_performance", ""+t);
+        d.getDocumentElement().setAttribute("time_performance", "" + t);
     }
 }

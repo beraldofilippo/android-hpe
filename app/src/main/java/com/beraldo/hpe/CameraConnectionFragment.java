@@ -42,6 +42,9 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
+import com.beraldo.hpe.utils.XMLReader;
+import com.beraldo.hpe.view.AutoFitTextureView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,9 +53,6 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-
-import com.beraldo.hpe.utils.XMLReader;
-import com.beraldo.hpe.view.AutoFitTextureView;
 import hugo.weaving.DebugLog;
 
 public class CameraConnectionFragment extends Fragment {
@@ -350,7 +350,7 @@ public class CameraConnectionFragment extends Fragment {
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(buttonsClickable) getActivity().onBackPressed();
+                if (buttonsClickable) getActivity().onBackPressed();
             }
         });
 
@@ -358,7 +358,7 @@ public class CameraConnectionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 MainActivity.saveFile = false;
-                if(buttonsClickable) getActivity().onBackPressed();
+                if (buttonsClickable) getActivity().onBackPressed();
             }
         });
     }
@@ -433,18 +433,17 @@ public class CameraConnectionFragment extends Fragment {
                     // Set the camera as the selected
                     CameraConnectionFragment.this.cameraId = cameraId;
 
-                    if(Build.VERSION.SDK_INT >= 23) {
-                        if(mCameraCharacteristics.get(CameraCharacteristics.LENS_INTRINSIC_CALIBRATION) != null) {
-                            mCameraIntrinsics =  mCameraCharacteristics.get(CameraCharacteristics.LENS_INTRINSIC_CALIBRATION);
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (mCameraCharacteristics.get(CameraCharacteristics.LENS_INTRINSIC_CALIBRATION) != null) {
+                            mCameraIntrinsics = mCameraCharacteristics.get(CameraCharacteristics.LENS_INTRINSIC_CALIBRATION);
                             mInfoView.setText("Camera intrinsics available!\n[f_x, f_y, c_x, c_y, s]\n" + mCameraIntrinsics);
-                        }
-                        else {
+                        } else {
                             mCameraIntrinsics = XMLReader.loadIntrinsicParams(getActivity());
                             mInfoView.setText("No camera intrinsics prebuilt values available for this device! Using:\n" +
                                     "[f_x] = " + mCameraIntrinsics[0] + " [f_y] = " + mCameraIntrinsics[1] + " [c_x] = " + mCameraIntrinsics[2] + " [c_y] = " + mCameraIntrinsics[2]);
                         }
 
-                        if(mCameraCharacteristics.get(CameraCharacteristics.LENS_RADIAL_DISTORTION) != null) {
+                        if (mCameraCharacteristics.get(CameraCharacteristics.LENS_RADIAL_DISTORTION) != null) {
                             float[] values = mCameraCharacteristics.get(CameraCharacteristics.LENS_RADIAL_DISTORTION);
                             mCameraDistortions[0] = values[1]; // k1
                             mCameraDistortions[1] = values[2]; // k2
@@ -452,8 +451,7 @@ public class CameraConnectionFragment extends Fragment {
                             mCameraDistortions[3] = values[5]; // p2
                             mCameraDistortions[4] = values[3]; // k3
                             mInfoView.append("Camera distortions available!\n[k_1, k_2, p_1, p_2, k_3]\n" + mCameraDistortions);
-                        }
-                        else {
+                        } else {
                             mCameraDistortions = XMLReader.loadDistortionParams(getActivity());
                             mInfoView.append("\nNo camera distortions prebuilt values available for this device! Using:\n" +
                                     "[k_1] = " + mCameraDistortions[0] + " [k_2] = " + mCameraDistortions[1] + " [p_1] = " + mCameraDistortions[2] + " [p_2] = " + mCameraDistortions[3] + " k_3] = " + mCameraDistortions[4]);
@@ -667,7 +665,7 @@ public class CameraConnectionFragment extends Fragment {
         final RectF bufferRect = new RectF(0, 0, previewSize.getHeight(), previewSize.getWidth());
         final float centerX = viewRect.centerX();
         final float centerY = viewRect.centerY();
-        if(rotation == Surface.ROTATION_90) {
+        if (rotation == Surface.ROTATION_90) {
             //Log.d(TAG, "Rotation is Surface.ROTATION_90");
             bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
             matrix.setRectToRect(viewRect, bufferRect, Matrix.ScaleToFit.FILL);

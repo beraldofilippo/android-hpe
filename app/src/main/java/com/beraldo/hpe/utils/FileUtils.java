@@ -73,8 +73,9 @@ public class FileUtils {
         // All objects are from android.context.Context
         SharedPreferences settings = ctx.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        if(!value.isEmpty()) editor.putString(key, value);
-        else editor.putString(key, Environment.getExternalStorageDirectory().getAbsolutePath()); // Default
+        if (!value.isEmpty()) editor.putString(key, value);
+        else
+            editor.putString(key, Environment.getExternalStorageDirectory().getAbsolutePath()); // Default
 
         // Commit the edits!
         editor.apply();
